@@ -1,0 +1,2 @@
+This project is mostly focused on testing our Python skills, use it to identify which pet images are of dogs and which pet images aren't of dogs, and also classify the breeds of dogs, for the images that are of dogs. There's program to time how long each algorithm takes to solve the classification problem.
+'check_images.py' uses models from Pytorch, iterates through the images then identify which pet images are of dogs and which pet images aren't of dogs, and also classify the breeds of dogs, for the images that are of dog.
