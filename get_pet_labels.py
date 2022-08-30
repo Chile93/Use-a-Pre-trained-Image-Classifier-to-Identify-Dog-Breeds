@@ -40,43 +40,20 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
-    
-    # create results_dic
-    results_dic = {}
-    
-    # get the filenames from the image directory
-    filenames = listdir(image_dir)
-    
-    edit_filenames = []
-    pet_labels = []
-    
-    # iteratethru filenames, make them lowercase, and split on '_' char
-    for file in filenames:
-        edited = file.lower().split("_")
-        pet_name = ""
-        
-        # check the pet_name list from above and only add alpha chars
-        for word in edited:
-            if word.isalpha():
-                pet_name += word + " "
-        
-        # strip white space and add the result to pet_labels list
-        pet_labels.append(pet_name.strip())
-    
-    # iterate thru the filename list
-    for index in range(0, len(filenames), 1):
-        
-        # if the current filename isn't in results_dic, add it w/ matching label
-        if filenames[index] not in results_dic:
-             results_dic[filenames[index]] = [pet_labels[index]]
-        
-        # if current filename is already in, print warning
-        else:
-             print("** Warning: Key=", filenames[index], 
-                   "already exists in results_dic with value =", 
-                   results_dic[filenames[index]])
-    
-    
-    # Replace None with the results_dic dictionary that you created with this
-    # function
+
+    in_files = listdir(image_dir) #reads files
+    results_dic = dict() #creates empty dictionary
+   
+    for idx in range(0, len(in_files), 1):
+       if in_files[idx][0] != ".": # Skips file if starts with .
+           word_list_pet_images = in_files[idx].lower().split("_")
+           pet_label = ""
+           for word in word_list_pet_images: #loops thru words in file name
+               if word.isalpha():
+                    pet_label += word + " "
+           if in_files[idx] not in results_dic:
+              results_dic[in_files[idx]] = [pet_label.strip()]  
+           else:
+               print("** Warning: Duplicate files exist in directory:", 
+                     in_files[idx])
     return results_dic
